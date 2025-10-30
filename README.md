@@ -1,6 +1,6 @@
 ### Description
 
-This project is a reimagining of a previous school project using C++, where I enhanced UDP to be reliable by implementing TCP-like features, with the goal of gaining a deeper understanding of network communications.
+This project is a reimagining of a previous school project in python using C++, where I enhanced UDP to be reliable by implementing TCP-like features, with the goal of gaining a deeper understanding of network communications.
 
 ### How to run
 
