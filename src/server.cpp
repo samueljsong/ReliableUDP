@@ -21,7 +21,6 @@ int main() {
 
     while (true)
     {
-        // --- Step 1: Receive SYN ---
         ssize_t bytes = recvfrom(sock, buffer, sizeof(buffer), 0,
                                  (sockaddr*)&client, &clientLen);
         packet = deserialize(buffer, bytes);
@@ -31,7 +30,6 @@ int main() {
     
         std::this_thread::sleep_for(std::chrono::seconds(3));
     
-        // --- Step 2: Send SYN+ACK ---
         Packet synAck(100, packet.sequence + 1, true, true);
         auto out = serialize(synAck);
         sendto(sock, out.data(), out.size(), 0, (sockaddr*)&client, clientLen);
@@ -39,7 +37,6 @@ int main() {
     
         std::this_thread::sleep_for(std::chrono::seconds(3));
     
-        // --- Step 3: Wait for ACK ---
         bytes = recvfrom(sock, buffer, sizeof(buffer), 0,
                          (sockaddr*)&client, &clientLen);
         packet = deserialize(buffer, bytes);
@@ -49,7 +46,6 @@ int main() {
     
         std::this_thread::sleep_for(std::chrono::seconds(3));
     
-        // --- Step 4: Receive data ---
         while (true) {
             bytes = recvfrom(sock, buffer, sizeof(buffer), 0,
                              (sockaddr*)&client, &clientLen);
